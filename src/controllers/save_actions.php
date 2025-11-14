@@ -75,7 +75,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     $valid_priorities = ['Baja', 'Media', 'Alta'];
 
-    try {
+    try { 
         // Validaciones del lado del servidor
         if (empty($title) || empty($user_id) || empty($priority) || empty($deadline)) {
             throw new Exception("Todos los campos son obligatorios.");

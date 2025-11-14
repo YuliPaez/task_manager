@@ -16,7 +16,7 @@
 <nav class="navbar navbar-dark bg-dark">
     <div class="container">
         <a class="navbar-brand" href="../index.php">Task Manager</a>
-    </div>
+    </div> 
 </nav>
 
 <div class="container py-4">

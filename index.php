@@ -12,7 +12,7 @@
     <div class="card-body p-0">
         <table class="table table-striped mb-0">
             <thead class="table-dark">
-                <tr>
+                <tr> 
                     <th>Title</th>
                     <th>Responsible</th>
                     <th>Status</th>

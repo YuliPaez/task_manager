@@ -66,7 +66,7 @@ if (!$task) {
       <div class="modal-header <?= $message_type=='success'?'bg-success text-white':'bg-danger text-white' ?>">
         <h5 class="modal-title" id="deleteModalLabel"><?= $message_type=='success'?'Éxito':'Error' ?></h5>
       </div>
-      <div class="modal-body">
+      <div class="modal-body"> 
         <?= $message ?>
       </div>
       <div class="modal-footer">

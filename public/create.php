@@ -8,7 +8,7 @@ require_once("../db/config.php");
 $users = $conn->query("SELECT id_users, name FROM users WHERE active = 1 ORDER BY name");
 ?>
 
-<h2 class="mb-4 text-success">Create New Task</h2>
+<h2 class="mb-4 text-success">Create New Task</h2> 
 
 <form action="../src/controllers/save_actions.php" method="POST" class="card p-4 shadow-sm" onsubmit="return validarFormulario()">
 

@@ -12,7 +12,7 @@ $task = $conn->query("SELECT * FROM tasks WHERE id_tasks = $id_tasks")->fetch_as
 // Responsables activos
 $users = $conn->query("SELECT id_users, name FROM users WHERE active = 1 ORDER BY name");
 ?>
-<!-- Vista de edición de tarea -->
+<!-- Vista de edición de tarea --> 
 <h2 class="mb-4 text-warning">Edit Task</h2>
 
 <form action="../src/controllers/edit_actions.php" method="POST" class="card p-4 shadow-sm" onsubmit="return validarFormulario()">

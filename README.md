@@ -1,101 +1,290 @@
-# 📝 Task Manager  
-![Status](https://img.shields.io/badge/Estado-En%20Desarrollo-blue)
-![PHP](https://img.shields.io/badge/PHP-8.0+-purple)
-![MariaDB](https://img.shields.io/badge/MariaDB-10.4+-blue)
-![Bootstrap](https://img.shields.io/badge/Bootstrap-5.0+-pink)
+# ⭐ Gestor de Tareas – Proyecto Semillero
 
-Aplicación web para la **gestión de tareas**, desarrollada con PHP, MariaDB y Bootstrap.  
-Permite crear, editar, eliminar y listar tareas, asignar responsables activos y validar información.  
-Incluye modales, interfaz moderna y estructura organizada por carpetas.
+![Status](https://img.shields.io/badge/STATUS-En%20Desarrollo-blue)
+![PHP](https://img.shields.io/badge/PHP-8.x-787CB5?logo=php)
+![MariaDB](https://img.shields.io/badge/MariaDB-10.x-003545?logo=mariadb)
+![Bootstrap](https://img.shields.io/badge/Bootstrap-5-8512FA?logo=bootstrap)
 
-<h2>📌 Requerimientos Funcionales</h2>
+---
+## 📚 Contenido
 
-<table style="width:100%; border-collapse: collapse;">
-  <tr style="background-color:#ccf5cc; font-weight:bold; text-align:left;">
-    <th style="padding:8px; border:1px solid #999;">Código</th>
-    <th style="padding:8px; border:1px solid #999;">Descripción</th>
-  </tr>
+* [Descripción General](#descripción-general)
+* [Tecnologías](#tecnologías)
+* [Estructura del Proyecto](#estructura-del-proyecto)
+* [Base de Datos (MariaDB)](#base-de-datos-mariadb)
+* [Instalación](#instalación)
+* [Requerimientos Funcionales](#requerimientos-funcionales)
+* [Validaciones del Sistema](#validaciones-del-sistema)
+* [Capturas de Funcionamiento](#capturas-de-funcionamiento)
+* [Control de Versiones (Git)](#control-de-versiones-git)
 
-  <tr>
-    <td style="padding:8px; border:1px solid #999;">RF1</td>
-    <td style="padding:8px; border:1px solid #999;">El sistema debe permitir crear, listar, editar y eliminar tareas.</td>
-  </tr>
+---
 
-  <tr>
-    <td style="padding:8px; border:1px solid #999;">RF2</td>
-    <td style="padding:8px; border:1px solid #999;">El sistema debe permitir asignar un responsable activo al crear o editar una tarea.</td>
-  </tr>
+## Descripción General
 
-  <tr>
-    <td style="padding:8px; border:1px solid #999;">RF3</td>
-    <td style="padding:8px; border:1px solid #999;">Cuando se cambie el responsable de una tarea, el sistema debe actualizar la fecha <code>assigned_at</code>.</td>
-  </tr>
+El **Gestor de Tareas** es una aplicación CRUD desarrollada en **PHP nativo**, utilizando **MariaDB**, **HTML/CSS**, **Bootstrap** y **jQuery**.
 
-  <tr>
-    <td style="padding:8px; border:1px solid #999;">RF4</td>
-    <td style="padding:8px; border:1px solid #999;">El sistema debe mostrar únicamente los usuarios activos en el campo <code>&lt;select&gt;</code> dentro de los formularios.</td>
-  </tr>
+Permite:
 
-  <tr>
-    <td style="padding:8px; border:1px solid #999;">RF5</td>
-    <td style="padding:8px; border:1px solid #999;">El título de la tarea debe ser obligatorio.</td>
-  </tr>
+* Crear, editar, listar y eliminar tareas.
+* Asignar responsables **activos** y registrar automáticamente la fecha de asignación.
+* Validar datos en el cliente y en el servidor.
+* Mostrar prioridad, estado, fecha límite y tiempo transcurrido.
+---
 
-  <tr>
-    <td style="padding:8px; border:1px solid #999;">RF6</td>
-    <td style="padding:8px; border:1px solid #999;">Solo se pueden asignar responsables que estén en estado activo.</td>
-  </tr>
+## Tecnologías
 
-  <tr>
-    <td style="padding:8px; border:1px solid #999;">RF7</td>
-    <td style="padding:8px; border:1px solid #999;">El sistema debe mostrar en una tabla: nombre del responsable, estado de la tarea, prioridad y fecha límite.</td>
-  </tr>
+| Tecnología | Uso |
+|-----------|-----|
+| **PHP 8** | Lógica del servidor |
+| **MariaDB** | Base de datos |
+| **Bootstrap 5** | Interfaz |
+| **CSS** | Estilos personalizados |
 
-  <tr>
-    <td style="padding:8px; border:1px solid #999;">RF8</td>
-    <td style="padding:8px; border:1px solid #999;">El sistema debe mostrar el tiempo que ha pasado desde la creación de la tarea hasta la fecha actual.</td>
-  </tr>
-</table>
+---
 
-🧩 Modelo Entidad–Relación
+## Estructura del Proyecto 
 
-El modelo describe la interacción entre users activos y tasks dentro del sistema:
+```txt
+task_manager/
+│
+├── index.php
+│
+├── public/                      # Vistas
+│   ├── create.php               # Crear tarea
+│   ├── edit.php                 # Editar tarea
+│   └── delete.php               # Eliminar tarea
+│
+├── src/
+│   └── controllers/             # Lógica del sistema
+│       ├── save_actions.php
+│       ├── edit_action.php
+│       └── delete_action.php
+│
+├── includes/
+│   ├── header.php
+│   └── footer.php
+│
+├── assets/
+│   ├── js                      # Validaciones 
+│   └── img                     # Capturas del sistema
+|
+│
+├── db/
+│   ├── config.php
+│   └── database.sql
+│
+└── README.md
+```
 
-Un usuario activo puede ser responsable de múltiples tareas.
+## Base de Datos (MariaDB)
 
-Cada tarea tiene solo un responsable asignado.
+```
+CREATE TABLE users (
+    id_user INT PRIMARY KEY AUTO_INCREMENT,
+    name VARCHAR(100) NOT NULL,
+    is_active TINYINT(1) DEFAULT 1
+);
 
-<p align="center"> <strong>📘 Diagrama ER - Users y Tasks</strong><br> <img src="assets/img/1.png" width="800"> </p>
-🎨 Diseño Visual (Mockups)
-
-A continuación se muestran los mockups del sistema Task Manager, organizados por pantallas clave de la aplicación.
-
-🏠 1. Pantalla Principal — Lista de Tasks
-
-<p align="center"> <img src="assets/img/index.png" width="800"> </p>
-➕ 2. Pantalla Crear Tasks
-
-<p align="center"> <img src="assets/img/create.png" width="800"> </p>
-✏️ 3. Pantalla Editar Tasks
-
-<p align="center"> <img src="assets/img/edit.png" width="800"> </p>
-❌ 4. Pantalla Confirmación de Exíto
-
-<p align="center"> <img src="assets/img/exit.png" width="800"> </p>
-⚠️ 5. Pantalla de Error o Alerta
-
-<p align="center"> <img src="assets/img/error.png" width="800"> </p>
-
-📌 Puedes ver y navegar los mockups completos en el siguiente enlace:
-🔗 https://balsamiq.cloud/shs3f4b/py1dnmi
+CREATE TABLE tasks (
+    id_tasks INT PRIMARY KEY AUTO_INCREMENT,
+    title VARCHAR(255) NOT NULL,
+    description TEXT,
+    priority ENUM('low','medium','high') NOT NULL,
+    deadline DATE NOT NULL,
+    user_id INT,
+    assigned_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES users(id_user)
+);
 
 
-🗄️ Diseño de Base de Datos (MariaDB)
-
-<table> <tr style="background-color:#d4f8d4; font-weight:bold;"> <td>Tabla</td> <td>Campo</td> <td>Tipo</td> <td>Descripción</td> </tr> <!-- USERS --> <tr> <td rowspan="4"><b>users</b></td> <td>id_users</td> <td>INT (PK)</td> <td>Identificador único del usuario.</td> </tr> <tr> <td>name</td> <td>VARCHAR(100)</td> <td>Nombre completo del usuario.</td> </tr> <tr> <td>active</td> <td>TINYINT(1)</td> <td>Estado del usuario (1 = activo, 0 = inactivo).</td> </tr> <tr> <td>created_at</td> <td>TIMESTAMP</td> <td>Fecha de creación del registro.</td> </tr> <!-- TASKS --> <tr> <td rowspan="7"><b>tasks</b></td> <td>id_tasks</td> <td>INT (PK)</td> <td>Identificador único de la tarea.</td> </tr> <tr> <td>title</td> <td>VARCHAR(255)</td> <td>Título de la tarea.</td> </tr> <tr> <td>user_id</td> <td>INT (FK → users.id_users)</td> <td>Responsable de la tarea (solo usuarios activos).</td> </tr> <tr> <td>status</td> <td>ENUM('Pendiente','En progreso','Completada')</td> <td>Estado actual de la tarea.</td> </tr> <tr> <td>priority</td> <td>ENUM('Baja','Media','Alta')</td> <td>Nivel de prioridad asignada.</td> </tr> <tr> <td>deadline</td> <td>DATE</td> <td>Fecha límite de entrega.</td> </tr> <tr> <td>assigned_at</td> <td>TIMESTAMP</td> <td>Fecha/hora de asignación del responsable (actualiza si cambia).</td> </tr> <tr> <td>created_at</td> <td>TIMESTAMP</td> <td>Fecha de creación de la tarea.</td> </tr> </table>
+```
 🧠 Trigger del Sistema
 
-Cuando el responsable de una tarea cambia, la base de datos actualiza automáticamente la fecha de asignación (assigned_at).
+```
+CREATE TRIGGER trg_update_assigned_at
+BEFORE UPDATE ON tasks
+FOR EACH ROW 
+BEGIN
+    IF NEW.user_id != OLD.user_id THEN
+        SET NEW.assigned_at = CURRENT_TIMESTAMP;
+    END IF;
+END;
 
-<table style="background-color:#e8fbe8; border-radius:8px; padding:10px; width:100%;"> <tr> <th align="left">Acción</th> <th align="left">Resultado automático</th> </tr> <tr> <td>Cambiar el responsable (user_id)</td> <td>✔ Se actualiza <b>assigned_at</b> con la fecha y hora actuales</td> </tr> <tr> <td>No cambiar el responsable</td> <td>— El valor de <b>assigned_at</b> permanece igual</td> </tr> </table>
-  
+```
+## Instalación
+
+1. Clonar el repositorio:
+
+```bash
+git clone https://github.com/YuliPaez/task_manager
+cd task_manager
+```
+
+2. Importar la base de datos:
+
+```bash
+mysql -u root -p
+CREATE DATABASE task_manager;
+USE task_manager;
+SOURCE db.sql;
+```
+
+3. Configurar la conexión en `db/config.php`.
+```bash
+<?php
+//Parametros de conexión a la base de datos maria db
+$host = "127.0.0.1"; 
+$port = 3307;
+$user = "root";
+$pass = "12345";
+$dbname = "task_manager";
+
+$conn = new mysqli($host, $user, $pass, $dbname, $port);
+
+// Verificar conexión
+if ($conn->connect_error) {
+    die("❌ Error de conexión: " . $conn->connect_error);
+}
+
+$conn->set_charset("utf8");
+?>
+
+
+```
+
+---
+
+## Requerimientos Funcionales
+
+* CRUD completo de tareas.
+* Solo usuarios **activos** pueden ser responsables.
+* Fecha `assigned_at` se actualiza al cambiar de responsable.
+* Validaciones en cliente y servidor.
+* Listado con responsable, prioridad, estado y fecha límite.
+* Cálculo del tiempo transcurrido desde la creación.
+
+---
+
+## Validaciones del Sistema
+
+### 🟦 **Validaciones del Cliente (jQuery)**
+
+* Título obligatorio.
+* Responsable obligatorio y activo.
+* Fecha límite mayor o igual a hoy.
+
+Cuando el usuario hace clic en Enviar en el formulario, el atributo:
+
+ `onsubmit="return validarFormulario()"`
+
+ hace que el navegador ejecute la función validarFormulario() antes de enviar los datos al servidor.
+ 
+![Validar js](assets/img/validatejs.png)
+
+* `title` no vacío.
+![Validar title](assets/img/validatetitle.png)
+
+* `Responsable` debe estar activo.
+
+![Validar responsable](assets/img/Res-active.png)
+
+* `MariaDB` verificar los responsables activos
+
+
+![Validar mariadb](assets/img/usersactive.png)
+
+
+---
+
+### **Validaciones del Servidor (PHP)**
+
+```php
+try {
+    if (empty($title) || empty($user_id) || empty($priority) || empty($deadline))
+        throw new Exception("Todos los campos son obligatorios.");
+
+    if (!in_array($priority, $valid_priorities))
+        throw new Exception("Prioridad inválida.");
+
+    if (!$taskObj->isUserActive($user_id))
+        throw new Exception("El usuario seleccionado no está activo.");
+
+    if (strtotime($deadline) < strtotime(date('Y-m-d')))
+        throw new Exception("La fecha límite no puede ser anterior a hoy.");
+
+} catch (Exception $e) {
+    echo "Error: " . $e->getMessage();
+}
+```
+
+---
+
+## Capturas de Funcionamiento
+
+### 🟦 Crear Tarea
+
+![Crear tarea](assets/img/createtasks.png)
+
+Guardamos la nueva tarea 
+![Guardar tarea](assets/img/exit_create.png)
+
+### 🟧 Editar Tarea
+
+![Editar tarea](assets/img/edittasks.png)
+
+Vamos a HeidiSQL de MariaDB y ejecutamos una consulta para verificar si nuestra tarea quedó registrada
+
+![Verificamos tarea](assets/img/ConsultTasks.png)
+
+Al cambiar de responsable, actualizar la fecha assigned_at tenemos en cuenta que a continuación muestra el id 2 que corresponde a Ana Gómez 
+
+![Responsable tarea](assets/img/Assigned_at.png)
+
+Cambiemos de responsable a ver si actualiza la fecha 
+
+![Actualizar fecha de la tarea](assets/img/update_at.png)
+
+Podemos verificar que si actualiza la fecha cada vez que cambia de responsable 
+Actualizamos tarea
+![Actualizamos tarea](assets/img/exit_update.png)
+
+### 🟥 Eliminar Tarea
+
+![Eliminar tarea](assets/img/delete.png)
+![Confirmar eliminar tarea](assets/img/confirmation.png)
+![Tarea Eliminada tarea](assets/img/deletetasks.png)
+![Verificar tarea](assets/img/mariadbdelete.png)
+
+### 🟩 Listado de Tareas
+
+![Listar tareas](assets/img/Tasksp.png)
+
+---
+
+## Control de Versiones (Git)
+
+1. **Commit 1 – Estructura inicial del proyecto**
+   ![Commit 1](assets/img/Commit1.png)
+2. **Commit 2 – Base de datos (tablas y relaciones)**
+   ![Commit 2](assets/img/commit2.png)
+3. **Commit 3 – Controllers (CRUD + validaciones iniciales)**
+   ![Commit 3](assets/img/commit3.png)
+4. **Commit 4 Validaciones del lado del cliente, fecha límite y corrección de formularios**
+   ![Commit 4](assets/img/commit4.png)
+5. **Commit 5 Mejoras UI + modales Bootstrap**
+   ![Commit 5](assets/img/commit5.png)
+
+---
+
+## 📌 Conclusiones
+
+Este proyecto permitió poner en práctica:
+
+* Programación en PHP nativo.
+* Diseño y relaciones en MariaDB.
+* Validaciones cliente/servidor.
+* Uso de triggers.
+* Control de versiones profesional con Git.
+
+---

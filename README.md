@@ -56,18 +56,6 @@ Maqueta o representación visual de un aplicación web que muestra cómo se ver�
 
 ### Ventana modal de error
 
-![Pantalla principal](assets/img/index.png)
-
-### Crear tarea
-![Crear tarea](assets/img/create.png)
-
-### Editar tarea
-![Editar tarea](assets/img/edit.png)
-
-### Ventana modal de éxito
-![Exito tarea](assets/img/exit.png)
-
-### Ventana modal de error
 ![Error tarea](assets/img/error.png)
 
 ---

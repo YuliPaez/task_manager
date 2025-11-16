@@ -36,7 +36,7 @@ Permite:
 
 ---
 
-## 📱 Mockup
+## Mockup
 
 Maqueta o representación visual de un aplicación web que muestra cómo se verá en su forma final, antes de ser fabricado :
 
@@ -374,7 +374,7 @@ Este proyecto permitió poner en práctica:
 
 ---
 
-## 🌐 Sitio Web en Línea
+## Sitio Web en Línea
 
 La aplicación web también está disponible en línea en el siguiente enlace:
 

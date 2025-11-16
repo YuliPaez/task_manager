@@ -10,6 +10,7 @@
 ## 📚 Contenido
 
 * [Descripción General](#descripción-general)
+* [Mockup](#mockup)
 * [Tecnologías](#tecnologías)
 * [Estructura del Proyecto](#estructura-del-proyecto)
 * [Base de Datos (MariaDB)](#base-de-datos-mariadb)
@@ -18,6 +19,7 @@
 * [Validaciones del Sistema](#validaciones-del-sistema)
 * [Capturas de Funcionamiento](#capturas-de-funcionamiento)
 * [Control de Versiones (Git)](#control-de-versiones-git)
+* [Sitio Web en Línea](#sitio-web-en-línea)
 
 ---
 

@@ -39,6 +39,7 @@ Permite:
 Maqueta o representación visual de un aplicación web que muestra cómo se verá en su forma final, antes de ser fabricado :
 
 ### Pantalla principal
+<<<<<<< HEAD
 
 ![Pantalla principal](assets/img/index.png)
 
@@ -56,6 +57,20 @@ Maqueta o representación visual de un aplicación web que muestra cómo se ver�
 
 ### Ventana modal de error
 
+=======
+![Pantalla principal](assets/img/index.png)
+
+### Crear tarea
+![Crear tarea](assets/img/create.png)
+
+### Editar tarea
+![Editar tarea](assets/img/edit.png)
+
+### Ventana modal de éxito
+![Exito tarea](assets/img/exit.png)
+
+### Ventana modal de error
+>>>>>>> 74973d7815306830725060ac625742a3c6653e07
 ![Error tarea](assets/img/error.png)
 
 ---
@@ -127,6 +142,11 @@ CREATE TABLE tasks (
     FOREIGN KEY (user_id) REFERENCES users(id_user)
 );
 
+<<<<<<< HEAD
+=======
+---
+
+>>>>>>> 74973d7815306830725060ac625742a3c6653e07
 ```
 
 ---
@@ -276,7 +296,10 @@ try {
 ![Crear tarea](assets/img/createtasks.png)
 
 ## Guardamos la nueva tarea 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 74973d7815306830725060ac625742a3c6653e07
 ![Guardar tarea](assets/img/exit_create.png)
 
 ### 🟧 Editar Tarea
@@ -298,9 +321,13 @@ try {
 ---
 
 ## Podemos verificar que si actualiza la fecha cada vez que cambia de responsable 
+<<<<<<< HEAD
 
 ## Actualizamos tarea
 
+=======
+## Actualizamos tarea
+>>>>>>> 74973d7815306830725060ac625742a3c6653e07
 ![Actualizamos tarea](assets/img/exit_update.png)
 
 ---

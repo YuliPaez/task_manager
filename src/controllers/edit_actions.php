@@ -2,11 +2,6 @@
 session_start();
 require_once("../../db/config.php");
 
-// Activar reporte de errores (solo para desarrollo)
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
-
 // ================================
 // Manejo de errores y excepciones
 // ================================
@@ -33,11 +28,13 @@ class Task
 {
     private $conn;
 
+    // Constructor permite inicializar la conexión a la base de datos
     public function __construct($conn)
     {
         $this->conn = $conn;
     }
 
+    // Verificar si un usuario está activo
     public function isUserActive(int $user_id): bool
     {
         $stmt = $this->conn->prepare("SELECT active FROM users WHERE id_users = ?");
@@ -49,6 +46,7 @@ class Task
         return isset($result['active']) && $result['active'] == 1;
     }
 
+    // Obtener una tarea por su ID
     public function getById(int $id_tasks): ?array
     {
         $stmt = $this->conn->prepare("SELECT * FROM tasks WHERE id_tasks = ?");
@@ -60,6 +58,7 @@ class Task
         return $task ?: null;
     }
 
+    // Actualizar una tarea
     public function update(array $data): bool
     {
         $current_task = $this->getById($data['id_tasks']);
@@ -100,6 +99,8 @@ $users = $conn->query("SELECT id_users, name FROM users WHERE active = 1 ORDER B
 // Procesar POST (actualización)
 // ================================
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['update'])) {
+
+    // Obtener y sanitizar datos del formulario
     $id_tasks = intval($_POST['id_tasks']);
     $title = trim($_POST['title']);
     $user_id = intval($_POST['user_id']);

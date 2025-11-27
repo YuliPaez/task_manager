@@ -2,19 +2,15 @@
 
 require_once("../db/config.php");
 
-// Clase Task para manejar operaciones CRUD
+// Clase Task permite la conexión y operaciones con tareas
 class Task {
     private $conn;
-
+    // Constructor permite inicializar la conexión a la base de datos
     public function __construct($conn) {
         $this->conn = $conn;
     }
 
-    /**
-     * Obtener tarea por ID
-     * @param int $id_tasks
-     * @return array|null
-     */
+    // Obtener una tarea por su ID
     public function getById(int $id_tasks): ?array {
         $stmt = $this->conn->prepare("SELECT * FROM tasks WHERE id_tasks = ?");
         $stmt->bind_param("i", $id_tasks);

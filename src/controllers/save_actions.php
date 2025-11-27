@@ -28,6 +28,7 @@ class Task
 {
     private $conn;
 
+    // Constructor permite inicializar la conexión a la base de datos
     public function __construct($conn)
     {
         $this->conn = $conn;
@@ -68,6 +69,7 @@ $taskObj = new Task($conn);
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
+    // Obtener y sanitizar datos del formulario
     $title = trim($_POST['title'] ?? '');
     $user_id = intval($_POST['user_id'] ?? 0);
     $priority = $_POST['priority'] ?? '';

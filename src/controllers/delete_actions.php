@@ -2,15 +2,18 @@
 require_once("../../db/config.php");
 
 // ================================
-// Clase Task para operaciones CRUD
+// Clase Task 
 // ================================
 class Task {
+
     private $conn;
 
+    // Constructor permite inicializar la conexión a la base de datos
     public function __construct($conn) {
         $this->conn = $conn;
     }
 
+    // Obtener una tarea por su ID
     public function getById(int $id_tasks): ?array {
         $stmt = $this->conn->prepare("SELECT * FROM tasks WHERE id_tasks = ?");
         $stmt->bind_param("i", $id_tasks);
@@ -20,6 +23,7 @@ class Task {
         return $task ?: null;
     }
 
+    // Eliminar una tarea por su ID
     public function delete(int $id_tasks): bool {
         $stmt = $this->conn->prepare("DELETE FROM tasks WHERE id_tasks = ?");
         $stmt->bind_param("i", $id_tasks);
@@ -32,6 +36,8 @@ class Task {
 // ================================
 // Inicialización
 // ================================
+
+// Manejo de errores y excepciones
 $taskObj = new Task($conn);
 $id_tasks = isset($_GET['id']) ? intval($_GET['id']) : 0;
 $task = $taskObj->getById($id_tasks);

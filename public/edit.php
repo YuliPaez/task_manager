@@ -1,10 +1,14 @@
 <?php
+
+// Activar reporte de errores
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
+// Incluir cabecera y configuración de base de datos
 require_once("../includes/header.php");
 require_once("../db/config.php");
 
-$id_tasks = intval($_GET["id"]); // Aseguramos que sea un número
+// Obtener ID de tarea a editar
+$id_tasks = intval($_GET["id"]); 
 
 // Obtener info de la tarea
 $task = $conn->query("SELECT * FROM tasks WHERE id_tasks = $id_tasks")->fetch_assoc();
@@ -12,9 +16,10 @@ $task = $conn->query("SELECT * FROM tasks WHERE id_tasks = $id_tasks")->fetch_as
 // Responsables activos
 $users = $conn->query("SELECT id_users, name FROM users WHERE active = 1 ORDER BY name");
 ?>
-<!-- Vista de edición de tarea --> 
+
 <h2 class="mb-4 text-warning">Edit Task</h2>
 
+<!-- Formulario de edición de tarea -->
 <form action="../src/controllers/edit_actions.php" method="POST" class="card p-4 shadow-sm" onsubmit="return validarFormulario()">
 
     <!-- Mostrar ID (solo lectura) -->

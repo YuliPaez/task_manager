@@ -1,6 +1,9 @@
 <?php
+// Activar reporte de errores
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
+
+// Incluir cabecera y configuración de base de datos
 require_once("../includes/header.php");
 require_once("../db/config.php");
 
@@ -10,6 +13,7 @@ $users = $conn->query("SELECT id_users, name FROM users WHERE active = 1 ORDER B
 
 <h2 class="mb-4 text-success">Create New Task</h2> 
 
+<!-- Formulario de creación de tarea -->
 <form action="../src/controllers/save_actions.php" method="POST" class="card p-4 shadow-sm" onsubmit="return validarFormulario()">
 
     <div class="mb-3">
